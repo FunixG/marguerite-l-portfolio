@@ -56,4 +56,4 @@ jobs:
         uses: actions/checkout@v6
 
       - name: Update Kubernetes Cluster
-        run: cd production-kube-files/backend && chmod +x ./deployServices.sh && ./deployServices.sh
+        run: cd production-kube-env/backend && chmod +x ./deployServices.sh && ./deployServices.sh
