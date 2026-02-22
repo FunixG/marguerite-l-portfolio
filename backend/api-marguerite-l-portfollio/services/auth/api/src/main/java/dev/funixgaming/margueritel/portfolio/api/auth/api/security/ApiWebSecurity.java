@@ -1,4 +1,4 @@
-package dev.funixgaming.margueritel.portfollio.api.auth.api.security;
+package dev.funixgaming.margueritel.portfolio.api.auth.api.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -24,14 +24,14 @@ import java.util.Arrays;
 public abstract class ApiWebSecurity {
 
     @Autowired
-    private UserJwtTokenFilter jwtTokenFilter;
+    private JwtTokenFilter jwtTokenFilter;
 
     protected ApiWebSecurity() {
         SecurityContextHolder.setStrategyName(SecurityContextHolder.MODE_INHERITABLETHREADLOCAL);
     }
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http) {
         http = http.cors(httpSecurityCorsConfigurer -> httpSecurityCorsConfigurer
                         .configurationSource(permitAllCors()))
                 .csrf(AbstractHttpConfigurer::disable)

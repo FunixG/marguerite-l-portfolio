@@ -1,0 +1,91 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: projects-microservice-deployment
+  namespace: 'marguerite-lanson'
+  labels:
+    app: springboot
+    service: projects
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: springboot
+      service: projcets
+  template:
+    metadata:
+      namespace: 'marguerite-lanson'
+      annotations:
+        build-time: "TIME-UPDATE-BUILD-FNG"
+      labels:
+        app: springboot
+        service: projects
+    spec:
+      containers:
+        - name: springboot-projects
+          image: ghcr.io/funixg/marguerite-l-portfolio-api-projects:latest
+          volumeMounts:
+            - mountPath: /container/java/
+              name: projects-storage
+          ports:
+            - containerPort: 80
+          resources:
+            limits:
+              memory: "2000Mi"
+          imagePullPolicy: Always
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 80
+            initialDelaySeconds: 10
+            periodSeconds: 5
+          env:
+            - name: APP_PORT
+              value: '80'
+            - name: DB_HOSTNAME
+              valueFrom:
+                configMapKeyRef:
+                  key: postgres-url
+                  name: postgres-config
+            - name: DB_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-config
+                  key: postgres-port
+            - name: DB_DATABASE
+              value: 'marguerite_lanson_projects'
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: postgres-user
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: postgres-password
+      volumes:
+        - name: projects-storage
+          hostPath:
+            path: /home/debian/k3s/marguerite-lanson
+
+---
+
+apiVersion: v1
+kind: Service
+
+metadata:
+  namespace: 'marguerite-lanson'
+  name: projcets
+
+spec:
+  type: ClusterIP
+  selector:
+    app: springboot
+    service: projects
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80

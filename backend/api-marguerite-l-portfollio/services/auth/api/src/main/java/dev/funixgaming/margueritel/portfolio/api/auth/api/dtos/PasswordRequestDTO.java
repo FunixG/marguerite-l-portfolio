@@ -1,4 +1,4 @@
-package dev.funixgaming.margueritel.portfollio.api.auth.api.dtos;
+package dev.funixgaming.margueritel.portfolio.api.auth.api.dtos;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;

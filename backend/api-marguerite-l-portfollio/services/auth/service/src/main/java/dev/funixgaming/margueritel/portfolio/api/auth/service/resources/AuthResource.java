@@ -2,7 +2,7 @@ package dev.funixgaming.margueritel.portfolio.api.auth.service.resources;
 
 import dev.funixgaming.margueritel.portfolio.api.auth.service.services.JwtService;
 import dev.funixgaming.margueritel.portfolio.api.auth.service.services.PasswordService;
-import dev.funixgaming.margueritel.portfollio.api.auth.api.dtos.PasswordRequestDTO;
+import dev.funixgaming.margueritel.portfolio.api.auth.api.dtos.PasswordRequestDTO;
 import dev.funixgaming.spring.core.exceptions.ApiBadRequestException;
 import dev.funixgaming.spring.core.exceptions.ApiException;
 import jakarta.validation.Valid;

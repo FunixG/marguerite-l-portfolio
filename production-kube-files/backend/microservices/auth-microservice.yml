@@ -1,0 +1,74 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: auth-microservice-deployment
+  namespace: 'marguerite-lanson'
+  labels:
+    app: springboot
+    service: auth
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: springboot
+      service: auth
+  template:
+    metadata:
+      namespace: 'marguerite-lanson'
+      annotations:
+        build-time: "TIME-UPDATE-BUILD-FNG"
+      labels:
+        app: springboot
+        service: auth
+    spec:
+      containers:
+        - name: springboot-auth
+          image: ghcr.io/funixg/marguerite-l-portfolio-api-auth:latest
+          volumeMounts:
+            - mountPath: /container/java/
+              name: auth-storage
+          ports:
+            - containerPort: 80
+          resources:
+            limits:
+              memory: "1000Mi"
+          imagePullPolicy: Always
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 80
+            initialDelaySeconds: 10
+            periodSeconds: 5
+          env:
+            - name: APP_PORT
+              value: '80'
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: encryption-secret
+                  key: jwt-key
+      volumes:
+        - name: auth-storage
+          hostPath:
+            path: /home/debian/k3s/marguerite-lanson
+
+---
+
+apiVersion: v1
+kind: Service
+
+metadata:
+  namespace: 'marguerite-lanson'
+  name: auth
+
+spec:
+  type: ClusterIP
+  selector:
+    app: springboot
+    service: auth
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80

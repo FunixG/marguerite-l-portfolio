@@ -1,6 +1,6 @@
 package dev.funixgaming.margueritel.portfolio.api.auth.service.configs;
 
-import dev.funixgaming.margueritel.portfollio.api.auth.api.security.ApiWebSecurity;
+import dev.funixgaming.margueritel.portfolio.api.auth.api.security.ApiWebSecurity;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -25,7 +25,7 @@ public class WebSecurityConfig {
     }
 
     @Bean
-    protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    protected SecurityFilterChain filterChain(HttpSecurity http) {
         http = http.cors(httpSecurityCorsConfigurer -> httpSecurityCorsConfigurer
                         .configurationSource(ApiWebSecurity.permitAllCors()))
                 .csrf(AbstractHttpConfigurer::disable)
@@ -35,11 +35,11 @@ public class WebSecurityConfig {
                 .exceptionHandling(Customizer.withDefaults())
 
                 .authorizeHttpRequests(exchanges -> exchanges
-                        .requestMatchers(HttpMethod.POST, "/auth/setPassword**").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/auth/setPassword").authenticated()
                         .anyRequest().permitAll()
                 )
                 .httpBasic(Customizer.withDefaults())
-                .addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(this.jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }

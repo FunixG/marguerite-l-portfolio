@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: marguerite-lanson-api-certificate
+  namespace: "marguerite-lanson"
+spec:
+  secretName: marguerite-lanson-api-certificate-tls
+  issuerRef:
+    name: letsencrypt
+    kind: ClusterIssuer
+  commonName: "api.marguerite-lanson.com"
+  dnsNames:
+    - "api.marguerite-lanson.com"
