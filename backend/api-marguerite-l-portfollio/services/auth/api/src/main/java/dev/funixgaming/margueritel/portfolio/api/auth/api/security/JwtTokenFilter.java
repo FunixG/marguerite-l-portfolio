@@ -18,6 +18,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.concurrent.TimeUnit;
 
 @Component
@@ -57,10 +58,9 @@ public class JwtTokenFilter extends OncePerRequestFilter {
             }
 
             if (isValid) {
-                final UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken("admin", null, null);
+                final UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken("admin", null, Collections.emptyList());
 
                 authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                authentication.setAuthenticated(true);
                 SecurityContextHolder.getContext().setAuthentication(authentication);
             }
 

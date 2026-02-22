@@ -16,16 +16,20 @@ import java.util.Date;
 public class JwtService {
 
     private final SecretKey jwtSecretKey;
+    private final JwtParser jwtParser;
 
     public JwtService(SecretsConfiguration secretsConfiguration) {
         this.jwtSecretKey = Keys.hmacShaKeyFor(Decoders.BASE64.decode(secretsConfiguration.getJwtSecret()));
+        this.jwtParser = Jwts.parser()
+                .keyLocator(_ -> this.jwtSecretKey)
+                .build();
     }
 
     public String generateToken() {
         final Date expirationDate = Date.from(Instant.now().plusSeconds(604800));
 
         try {
-            return io.jsonwebtoken.Jwts.builder()
+            return Jwts.builder()
                     .subject("auth-token-margueritel-api")
                     .expiration(expirationDate)
                     .signWith(this.jwtSecretKey)
@@ -38,11 +42,7 @@ public class JwtService {
 
     public boolean isTokenValid(String token) {
         try {
-            final JwtParser parser = Jwts.parser()
-                    .keyLocator(_ -> this.jwtSecretKey)
-                    .build();
-
-            parser.parse(token);
+            this.jwtParser.parse(token);
             return true;
         } catch (Exception _) {
             return false;
