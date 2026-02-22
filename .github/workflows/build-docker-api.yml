@@ -22,7 +22,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Checkout Code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -50,7 +50,7 @@ jobs:
           KUBECONFIG: ${{ secrets.KUBECONFIG }}
 
       - name: Checkout source code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Update Kubernetes Cluster
         run: cd production-kube-files/backend && chmod +x ./deployServices.sh && ./deployServices.sh
