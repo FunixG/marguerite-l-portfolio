@@ -40,7 +40,7 @@ jobs:
           cache: gradle
 
       - name: Build and push docker
-        run: ./backend/api-marguerite-l-portfollio/buildDocker.sh
+        run: cd ./backend/api-marguerite-l-portfollio/ && chmod +x ./buildDocker.sh && ./buildDocker.sh
 
       - name: Set up kubectl
         uses: azure/k8s-set-context@v4
