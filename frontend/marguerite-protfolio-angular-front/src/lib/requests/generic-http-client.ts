@@ -16,14 +16,10 @@ export abstract class GenericHttpClient {
     public static readonly headerAuth: string = 'Authorization';
     public static readonly bearerPrefix: string = 'Bearer';
 
-    protected getHeaders(captchaCode: string = ''): HttpHeaders {
+    protected getHeaders(): HttpHeaders {
         let headersToSend = new HttpHeaders({
             'Content-Type': 'application/json'
         });
-
-        if (captchaCode.length > 0) {
-            headersToSend = headersToSend.set(GenericHttpClient.captchaHeaderCode, captchaCode);
-        }
 
         if (typeof localStorage !== 'undefined') {
             const bearerToken: string | null = localStorage.getItem(GenericHttpClient.accessTokenLocalStorageName);
