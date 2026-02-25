@@ -44,7 +44,7 @@ jobs:
           cache: gradle
 
       - name: Build and push docker
-        run: cd ./backend/api-marguerite-l-portfollio/ && chmod +x ./buildDocker.sh && ./buildDocker.sh
+        run: cd ./backend/api-marguerite-l-portfolio/ && chmod +x ./buildDocker.sh && ./buildDocker.sh
         env:
           GITHUB_AUTH_USERNAME: ${{ github.actor }}
           GITHUB_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

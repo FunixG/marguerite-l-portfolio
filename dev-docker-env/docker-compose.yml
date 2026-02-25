@@ -16,7 +16,7 @@ services:
 
   auth-service:
     build:
-      context: ../backend/api-marguerite-l-portfollio/
+      context: ../backend/api-marguerite-l-portfolio/
       dockerfile: Dockerfile
       args:
         - jar_file=./services/auth/service/build/libs/service-1.0.0.jar
@@ -34,7 +34,7 @@ services:
 
   projects-service:
     build:
-      context: ../backend/api-marguerite-l-portfollio/
+      context: ../backend/api-marguerite-l-portfolio/
       dockerfile: Dockerfile
       args:
         - jar_file=./services/projects/service/build/libs/service-1.0.0.jar
