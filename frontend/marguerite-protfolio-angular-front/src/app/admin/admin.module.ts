@@ -9,6 +9,10 @@ import {ButtonComponent} from "../components/button/button.component";
 import {InputTextComponent} from "../components/inputs/input-text/input-text.component";
 import {LoaderComponent} from "../components/loader/loader.component";
 import {PasswordComponent} from "./password/password.component";
+import {CdkDrag, CdkDropList} from "@angular/cdk/drag-drop";
+import {
+  AdminTextModuleComponent
+} from "./admin-project-manager/modules/text/admin-text-module/admin-text-module.component";
 
 @NgModule({
   declarations: [
@@ -16,7 +20,8 @@ import {PasswordComponent} from "./password/password.component";
     AdminLoginComponent,
     AdminProjectManagerComponent,
     AdminProjectsListComponent,
-    PasswordComponent
+    PasswordComponent,
+    AdminTextModuleComponent
   ],
   imports: [
     CommonModule,
@@ -24,7 +29,9 @@ import {PasswordComponent} from "./password/password.component";
     ButtonComponent,
     InputTextComponent,
     LoaderComponent,
-    ButtonComponent
+    ButtonComponent,
+    CdkDrag,
+    CdkDropList
   ]
 })
 export class AdminModule { }

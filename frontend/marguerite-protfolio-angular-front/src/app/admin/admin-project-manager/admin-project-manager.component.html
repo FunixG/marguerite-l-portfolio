@@ -1,1 +1,16 @@
-<p>admin-project-manager works!</p>
+
+
+
+<div class="modules-list" cdkDropList (cdkDropListDropped)="drop($event)">
+    @for (module of projectsService.modules; track module) {
+        <div class="card module" cdkDrag>
+            @switch (module.getType()) {
+
+                @case ("TextProjectModule") {
+                    <app-admin-text-module [moduleId]="module.getId()"></app-admin-text-module>
+                }
+
+            }
+        </div>
+    }
+</div>
