@@ -1,5 +1,7 @@
 @if (projectsService.loadedProject) {
-    <div class="p-3">
+    <app-modules-manager></app-modules-manager>
+
+    <div class="ps-5 p-3">
         <h1>Définition du projet</h1>
 
         <app-project-title></app-project-title>
@@ -11,31 +13,38 @@
 
         <h1>Modules</h1>
 
-        <div class="modules-list" cdkDropList (cdkDropListDropped)="drop($event)">
-            @for (module of projectsService.modules; track module) {
-                <div class="card module" cdkDrag>
-                    @switch (module.getType()) {
-                        @case("ImageAndImageModule") {
-                            <app-admin-image-and-image-module [moduleId]="module.getId()"></app-admin-image-and-image-module>
+        @if (projectsService.modules.length === 0) {
+            <div class="no-modules-container">
+                <p>Pas de modules ! 👋</p>
+                <p>Ajoute un module avec le bouton 📂 a gauche de ton écran.</p>
+                <p>La touche ECHAP de ton clavier marche aussi pour ce menu.</p>
+            </div>
+        } @else {
+            <div class="modules-list" cdkDropList (cdkDropListDropped)="drop($event)">
+                @for (module of projectsService.modules; track module) {
+                    <div class="card module" cdkDrag>
+                        @switch (module.getType()) {
+                            @case("ImageAndImageModule") {
+                                <app-admin-image-and-image-module [moduleId]="module.getId()"></app-admin-image-and-image-module>
+                            }
+                            @case("ImageAndTextModule") {
+                                <app-admin-image-and-text-module [moduleId]="module.getId()"></app-admin-image-and-text-module>
+                            }
+                            @case ("TextAndImageModule") {
+                                <app-admin-text-and-image-module [moduleId]="module.getId()"></app-admin-text-and-image-module>
+                            }
+                            @case ("TextProjectModule") {
+                                <app-admin-text-module [moduleId]="module.getId()"></app-admin-text-module>
+                            }
+                            @case ("VideoModule") {
+                                <app-admin-video-module [moduleId]="module.getId()"></app-admin-video-module>
+                            }
                         }
-                        @case("ImageAndTextModule") {
-                            <app-admin-image-and-text-module [moduleId]="module.getId()"></app-admin-image-and-text-module>
-                        }
-                        @case ("TextAndImageModule") {
-                            <app-admin-text-and-image-module [moduleId]="module.getId()"></app-admin-text-and-image-module>
-                        }
-                        @case ("TextProjectModule") {
-                            <app-admin-text-module [moduleId]="module.getId()"></app-admin-text-module>
-                        }
-                        @case ("VideoModule") {
-                            <app-admin-video-module [moduleId]="module.getId()"></app-admin-video-module>
-                        }
-                    }
-                </div>
-            }
-        </div>
+                    </div>
+                }
+            </div>
+        }
     </div>
 } @else {
     <app-loader></app-loader>
 }
-

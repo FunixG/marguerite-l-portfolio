@@ -12,22 +12,23 @@ import {PasswordComponent} from "./password/password.component";
 import {CdkDrag, CdkDropList} from "@angular/cdk/drag-drop";
 import {AdminTextModuleComponent} from "./admin-project-manager/modules/admin-text-module/admin-text-module.component";
 import {
-  AdminImageAndImageModuleComponent
+    AdminImageAndImageModuleComponent
 } from "./admin-project-manager/modules/admin-image-and-image-module/admin-image-and-image-module.component";
 import {
-  AdminImageAndTextModuleComponent
+    AdminImageAndTextModuleComponent
 } from "./admin-project-manager/modules/admin-image-and-text-module/admin-image-and-text-module.component";
 import {
-  AdminTextAndImageModuleComponent
+    AdminTextAndImageModuleComponent
 } from "./admin-project-manager/modules/admin-text-and-image-module/admin-text-and-image-module.component";
 import {
-  AdminVideoModuleComponent
+    AdminVideoModuleComponent
 } from "./admin-project-manager/modules/admin-video-module/admin-video-module.component";
 import {ProjectTitleComponent} from "./admin-project-manager/project-title/project-title.component";
 import {ProjectDescriptionComponent} from "./admin-project-manager/project-description/project-description.component";
 import {ProjectUrlComponent} from "./admin-project-manager/project-url/project-url.component";
 import {ProjectCoverImageComponent} from "./admin-project-manager/project-cover-image/project-cover-image.component";
 import {FormsModule} from "@angular/forms";
+import {ModulesManagerComponent} from "./admin-project-manager/modules-manager/modules-manager.component";
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import {FormsModule} from "@angular/forms";
     ProjectTitleComponent,
     ProjectDescriptionComponent,
     ProjectUrlComponent,
-    ProjectCoverImageComponent
+    ProjectCoverImageComponent,
+    ModulesManagerComponent
   ],
   imports: [
     CommonModule,

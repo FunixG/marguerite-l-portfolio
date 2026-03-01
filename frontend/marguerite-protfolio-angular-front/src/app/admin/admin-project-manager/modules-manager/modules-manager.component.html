@@ -1,0 +1,13 @@
+<div class="module-manager">
+    @if (menuOpened) {
+        <div class="opened-menu-container">
+            <p>modules-manager works! OUVERT</p>
+        </div>
+    }
+
+    <div class="button-open-menu-container">
+        <button class="button-open-menu" (click)="menuOpened = !menuOpened">
+            {{ menuOpened ? '📂' : '📁' }}
+        </button>
+    </div>
+</div>
