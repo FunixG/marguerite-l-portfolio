@@ -1,0 +1,11 @@
+@if (projectsService.loadedProject) {
+    <div class="description-input-container">
+      <textarea
+              class="description-input"
+              placeholder="Entrez la description du projet"
+              rows="6"
+              maxlength="1000"
+              [(ngModel)]="projectsService.loadedProject.description"
+      ></textarea>
+    </div>
+}

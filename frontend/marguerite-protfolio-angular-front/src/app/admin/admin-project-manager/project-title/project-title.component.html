@@ -1,0 +1,11 @@
+@if (projectsService.loadedProject) {
+    <div class="title-input-container">
+        <input
+                type="text"
+                class="title-input"
+                placeholder="Entrez le titre du projet"
+                [(ngModel)]="projectsService.loadedProject.title"
+                maxlength="120"
+        />
+    </div>
+}
