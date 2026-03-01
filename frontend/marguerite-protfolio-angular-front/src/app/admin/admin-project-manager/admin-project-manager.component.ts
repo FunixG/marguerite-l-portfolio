@@ -23,7 +23,7 @@ export class AdminProjectManagerComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
       this.projectsService.loadProject(params['project'], this.cdRef, (err: ErrorDto) => {
         if (err.status == 404) {
-          this.router.navigate(['..']).then(() => {
+          this.router.navigate(['/admin']).then(() => {
             alert("Le projet que vous essayez de charger n'existe pas.");
           });
         } else if (err.status != 401) {

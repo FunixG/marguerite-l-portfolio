@@ -31,6 +31,9 @@ import {ModulesManagerComponent} from "./admin-project-manager/modules-manager/m
 import {ImagePreviewComponent} from "./admin-project-manager/previews/image-preview/image-preview.component";
 import {TextPreviewComponent} from "./admin-project-manager/previews/text-preview/text-preview.component";
 import {VideoPreviewComponent} from "./admin-project-manager/previews/video-preview/video-preview.component";
+import {
+  AdminImageModuleComponent
+} from "./admin-project-manager/modules/admin-image-module/admin-image-module.component";
 
 @NgModule({
   declarations: [
@@ -50,7 +53,8 @@ import {VideoPreviewComponent} from "./admin-project-manager/previews/video-prev
     ModulesManagerComponent,
     ImagePreviewComponent,
     TextPreviewComponent,
-    VideoPreviewComponent
+    VideoPreviewComponent,
+    AdminImageModuleComponent
   ],
   imports: [
     CommonModule,

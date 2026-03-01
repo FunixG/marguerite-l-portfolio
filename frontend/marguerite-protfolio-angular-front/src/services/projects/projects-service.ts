@@ -10,6 +10,7 @@ import {ImageAndImageModule} from "./modules/image-and-image-module";
 import {ImageAndTextModule} from "./modules/image-and-text-module";
 import {TextAndImageModule} from "./modules/text-and-image-module";
 import {VideoModule} from "./modules/video-module";
+import {ImageModule} from "./modules/image-module";
 
 @Injectable({
     providedIn: 'root'
@@ -98,6 +99,8 @@ export default class ProjectsService extends CrudHttpClient<ProjectDto> {
                 return ImageAndImageModule.fromJson(data.data);
             case new ImageAndTextModule().moduleName:
                 return ImageAndTextModule.fromJson(data.data);
+            case new ImageModule().moduleName:
+                return ImageModule.fromJson(data.data);
             case new TextAndImageModule().moduleName:
                 return TextAndImageModule.fromJson(data.data);
             case new TextProjectModule().moduleName:
