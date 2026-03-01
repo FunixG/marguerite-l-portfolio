@@ -20,7 +20,7 @@
                 <p>La touche ECHAP de ton clavier marche aussi pour ce menu.</p>
             </div>
         } @else {
-            <div class="modules-list" cdkDropList (cdkDropListDropped)="drop($event)">
+            <div class="modules-list d-flex flex-column gap-3" cdkDropList (cdkDropListDropped)="drop($event)">
                 @for (module of projectsService.modules; track module) {
                     <div class="card module" cdkDrag>
                         @switch (module.getType()) {

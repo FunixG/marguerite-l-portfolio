@@ -3,7 +3,7 @@
     flex-direction: row;
     position: fixed;
     inset: 0;
-    z-index: 9999;
+    z-index: 10;
     pointer-events: none;
 }
 
@@ -16,6 +16,8 @@
     box-shadow: 2px 0 16px rgba(0, 0, 0, 0.08);
     transition: transform 0.3s cubic-bezier(.4, 0, .2, 1);
     pointer-events: auto;
+    scroll-behavior: smooth;
+    overflow: scroll;
 }
 
 .module-manager.menu-opened .opened-menu-container {
