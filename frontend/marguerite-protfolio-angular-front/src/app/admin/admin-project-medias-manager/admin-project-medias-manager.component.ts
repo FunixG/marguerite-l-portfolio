@@ -1,4 +1,4 @@
-import {Component, EventEmitter, HostListener, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import ProjectsMediasService from "../../../services/projects/projects-medias-service";
 import {ProjectMediaDto} from "../../../dtos/projects/project-media-dto";
 import {PageOption} from "../../../lib/dtos/page-dto";
@@ -30,10 +30,6 @@ export class AdminProjectMediasManagerComponent implements OnInit {
 
   ngOnInit(): void {
     this.load();
-  }
-
-  @HostListener('window:scroll') onScroll(e: Event): void {
-    console.log(e)
   }
 
   loadNextPage(): void {
