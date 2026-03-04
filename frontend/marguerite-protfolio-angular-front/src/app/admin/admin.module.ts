@@ -41,6 +41,7 @@ import AdminProjectMediasManagerService from "./admin-project-medias-manager/adm
 import {MediaComponent} from "../components/image/media/media.component";
 import {InputParagraphTextComponent} from "../components/inputs/input-paragraph-text/input-paragraph-text.component";
 import {AdminProjectRowComponent} from "./admin-projects-list/admin-project-row/admin-project-row.component";
+import {InputCheckboxComponent} from "../components/inputs/input-checkbox/input-checkbox.component";
 
 @NgModule({
     declarations: [
@@ -76,7 +77,8 @@ import {AdminProjectRowComponent} from "./admin-projects-list/admin-project-row/
         CdkDropList,
         FormsModule,
         MediaComponent,
-        InputParagraphTextComponent
+        InputParagraphTextComponent,
+        InputCheckboxComponent
     ],
     providers: [
         AdminProjectMediasManagerService

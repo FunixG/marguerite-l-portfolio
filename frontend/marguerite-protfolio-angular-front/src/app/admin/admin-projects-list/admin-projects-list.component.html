@@ -28,7 +28,7 @@
             ></app-button>
         </div>
     } @else {
-        <div class="pt-5 pb-5 container-fluid">
+        <div class="pt-5 pb-5 container-fluid d-flex flex-column gap-4">
             @for (project of projects; track project.id) {
                 <app-admin-project-row [project]="project"></app-admin-project-row>
             }
