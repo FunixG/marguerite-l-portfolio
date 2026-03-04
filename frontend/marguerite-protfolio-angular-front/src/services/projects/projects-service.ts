@@ -11,6 +11,8 @@ import {ImageAndTextModule} from "./modules/image-and-text-module";
 import {TextAndImageModule} from "./modules/text-and-image-module";
 import {VideoModule} from "./modules/video-module";
 import {ImageModule} from "./modules/image-module";
+import {QueryBuilder, QueryParam} from "../../lib/query-builder";
+import {PageOption} from "../../lib/dtos/page-dto";
 
 @Injectable({
     providedIn: 'root'
@@ -24,6 +26,38 @@ export default class ProjectsService extends CrudHttpClient<ProjectDto> {
 
     constructor(http: HttpClient) {
         super(http, environment.apiUrl, '/projects');
+    }
+
+    findByPath(
+        path: string,
+        success: (project: ProjectDto) => void = (_: ProjectDto) => {},
+        fail: (error: ErrorDto) => void = (_: ErrorDto) => {}
+    ): void {
+        const query = new QueryBuilder()
+        const equalsQuery = new QueryParam()
+
+        equalsQuery.type = QueryBuilder.equal
+        equalsQuery.value = path
+        equalsQuery.key = 'path'
+
+        query.addParam(equalsQuery)
+
+        const pageOption = new PageOption()
+        pageOption.page = 0
+        pageOption.elemsPerPage = 1
+
+        this.find(pageOption, query).subscribe({
+            next: (page) => {
+                if (page.content.length > 0) {
+                    success(page.content[0])
+                } else {
+                    fail(new ErrorDto('Aucun projet trouvé avec ce chemin', 404, 1, []))
+                }
+            },
+            error: (err: ErrorDto) => {
+                fail(err)
+            }
+        })
     }
 
     loadProject(id: string, cdRef: ChangeDetectorRef, failedLoad: (err: ErrorDto) => void = () => {}): void {

@@ -1,1 +1,9 @@
-<p>project-page works!</p>
+<div class="container-fluid">
+    <h1 class="text-center">{{ project.title }}</h1>
+    <p class="project-description">
+        {{ project.description }}
+    </p>
+
+    <section class="content" [innerHtml]="project.htmlCode">
+    </section>
+</div>
