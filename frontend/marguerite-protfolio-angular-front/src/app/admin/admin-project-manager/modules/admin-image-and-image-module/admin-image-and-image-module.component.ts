@@ -9,4 +9,6 @@ import {ImageAndImageModule} from "../../../../../services/projects/modules/imag
 })
 export class AdminImageAndImageModuleComponent extends ModuleComponent<ImageAndImageModule> {
 
+
+
 }

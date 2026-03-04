@@ -41,14 +41,8 @@
                         @for (media of medias; track media.id) {
                             <div class="col-6 col-md-4 col-lg-3">
                                 <div class="card h-100">
-                                    @if (media.mediaType === mediaTypes.VIDEO) {
-                                        <video controls class="card-img-top">
-                                            <source [src]="mediasService.getMediaUrl(media)" [type]="'video/mp4'">
-                                            Votre navigateur ne supporte pas la lecture de vidéos.
-                                        </video>
-                                    } @else {
-                                        <img [src]="mediasService.getMediaUrl(media)" class="card-img-top" alt="{{ media.mediaDescription }}">
-                                    }
+                                    <app-media [media]="media"></app-media>
+
                                     <div class="card-body d-flex flex-column">
                                         <div class="row">
                                             <div class="col-7">

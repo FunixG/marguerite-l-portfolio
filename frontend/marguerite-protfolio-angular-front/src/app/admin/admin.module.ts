@@ -38,6 +38,7 @@ import {
     AdminProjectMediasManagerComponent
 } from "./admin-project-medias-manager/admin-project-medias-manager.component";
 import AdminProjectMediasManagerService from "./admin-project-medias-manager/admin-project-medias-manager.service";
+import {MediaComponent} from "../components/image/media/media.component";
 
 @NgModule({
   declarations: [
@@ -61,17 +62,18 @@ import AdminProjectMediasManagerService from "./admin-project-medias-manager/adm
     AdminImageModuleComponent,
     AdminProjectMediasManagerComponent
   ],
-  imports: [
-    CommonModule,
-    AdminRoutingModule,
-    ButtonComponent,
-    InputTextComponent,
-    LoaderComponent,
-    ButtonComponent,
-    CdkDrag,
-    CdkDropList,
-    FormsModule
-  ],
+    imports: [
+        CommonModule,
+        AdminRoutingModule,
+        ButtonComponent,
+        InputTextComponent,
+        LoaderComponent,
+        ButtonComponent,
+        CdkDrag,
+        CdkDropList,
+        FormsModule,
+        MediaComponent
+    ],
   providers: [
     AdminProjectMediasManagerService
   ]

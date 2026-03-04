@@ -14,7 +14,6 @@ export class AdminProjectMediasManagerComponent implements OnInit {
 
   loading = true;
   medias: ProjectMediaDto[] = [];
-  mediaTypes = ProjectMediaType;
 
   addMedia = false;
   fileUpload?: File
