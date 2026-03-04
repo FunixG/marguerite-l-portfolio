@@ -1,6 +1,8 @@
 import {Component} from '@angular/core';
 import {ModuleComponent} from "../module.component";
 import {ImageModule} from "../../../../../services/projects/modules/image-module";
+import {ProjectMediaDto, ProjectMediaType} from "../../../../../dtos/projects/project-media-dto";
+import {ImageAndTextModule} from "../../../../../services/projects/modules/image-and-text-module";
 
 @Component({
   selector: 'app-admin-image-module',
@@ -9,7 +11,34 @@ import {ImageModule} from "../../../../../services/projects/modules/image-module
 })
 export class AdminImageModuleComponent extends ModuleComponent<ImageModule> {
 
-  onLoadedModule(module: ImageModule): void {
+  image?: ProjectMediaDto
+
+  onLoadedModule(module: ImageAndTextModule): void {
+    if (module.imageId) {
+      this.mediaService.getById(module.imageId).subscribe({
+        next: (media) => {
+          this.image = media;
+        },
+        error: (err) => {
+          alert("Erreur de chargement de l'image : " + err.message)
+        }
+      })
+    }
+  }
+
+  openImageSelection() {
+    if (!this.module) return;
+
+    this.mediaModalService.openModal((media) => {
+      if (!media.id || !this.module) return;
+      if (media.mediaType !== ProjectMediaType.IMAGE) {
+        alert("Veuillez sélectionner une image.")
+        return;
+      }
+
+      this.image = media
+      this.module.imageId = media.id
+    })
   }
 
 }

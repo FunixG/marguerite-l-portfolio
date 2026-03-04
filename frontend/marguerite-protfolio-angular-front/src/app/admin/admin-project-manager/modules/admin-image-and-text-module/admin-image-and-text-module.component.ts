@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {ModuleComponent} from "../module.component";
 import {ImageAndTextModule} from "../../../../../services/projects/modules/image-and-text-module";
-import {ProjectMediaDto} from "../../../../../dtos/projects/project-media-dto";
+import {ProjectMediaDto, ProjectMediaType} from "../../../../../dtos/projects/project-media-dto";
 
 @Component({
   selector: 'app-admin-image-and-text-module',
@@ -33,6 +33,10 @@ export class AdminImageAndTextModuleComponent extends ModuleComponent<ImageAndTe
 
     this.mediaModalService.openModal((media) => {
       if (!media.id || !this.module) return;
+      if (media.mediaType !== ProjectMediaType.IMAGE) {
+        alert("Veuillez sélectionner une image.")
+        return;
+      }
 
       this.image = media
       this.module.imageId = media.id

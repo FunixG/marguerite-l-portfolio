@@ -9,7 +9,10 @@ import {ModuleComponent} from "../module.component";
 })
 export class AdminTextModuleComponent extends ModuleComponent<TextProjectModule> {
 
+  text: string = ""
+
   onLoadedModule(module: TextProjectModule): void {
+    this.text = module.text || ""
   }
 
 }
