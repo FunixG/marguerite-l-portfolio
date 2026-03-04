@@ -1,11 +1,6 @@
 @if (projectsService.loadedProject) {
-    <div class="description-input-container">
-      <textarea
-              class="description-input"
-              placeholder="Entre la description du projet"
-              rows="6"
-              maxlength="1000"
-              [(ngModel)]="projectsService.loadedProject.description"
-      ></textarea>
-    </div>
+    <app-input-paragraph-text
+            [text]="projectsService.loadedProject.description"
+            (textChange)="projectsService.loadedProject.description = $event"
+    ></app-input-paragraph-text>
 }

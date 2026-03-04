@@ -39,6 +39,7 @@ import {
 } from "./admin-project-medias-manager/admin-project-medias-manager.component";
 import AdminProjectMediasManagerService from "./admin-project-medias-manager/admin-project-medias-manager.service";
 import {MediaComponent} from "../components/image/media/media.component";
+import {InputParagraphTextComponent} from "../components/inputs/input-paragraph-text/input-paragraph-text.component";
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import {MediaComponent} from "../components/image/media/media.component";
         CdkDrag,
         CdkDropList,
         FormsModule,
-        MediaComponent
+        MediaComponent,
+        InputParagraphTextComponent
     ],
   providers: [
     AdminProjectMediasManagerService

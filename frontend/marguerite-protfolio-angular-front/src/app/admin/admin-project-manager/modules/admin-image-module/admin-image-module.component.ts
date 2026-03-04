@@ -9,4 +9,7 @@ import {ImageModule} from "../../../../../services/projects/modules/image-module
 })
 export class AdminImageModuleComponent extends ModuleComponent<ImageModule> {
 
+  onLoadedModule(module: ImageModule): void {
+  }
+
 }

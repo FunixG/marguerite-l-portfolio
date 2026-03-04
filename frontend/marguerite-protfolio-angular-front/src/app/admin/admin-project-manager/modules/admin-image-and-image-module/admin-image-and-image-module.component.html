@@ -3,10 +3,41 @@
     <div class="card-body">
         <div class="row align-items-center text-center">
             <div class="col">
-                <app-image-preview></app-image-preview>
+                <div>
+                    @if (first) {
+                        <app-media [media]="first"></app-media>
+                    } @else {
+                        <app-image-preview></app-image-preview>
+                    }
+                </div>
+
+                <div>
+                    <app-button
+                            [label]="'+'"
+                            [tooltip]="'Ajouter une image'"
+                            [classBtn]="'btn-success mt-2'"
+                            (onClick)="openSelection(true)"
+                    ></app-button>
+                </div>
             </div>
+
             <div class="col">
-                <app-image-preview></app-image-preview>
+                <div>
+                    @if (second) {
+                        <app-media [media]="second"></app-media>
+                    } @else {
+                        <app-image-preview></app-image-preview>
+                    }
+                </div>
+
+                <div>
+                    <app-button
+                            [label]="'+'"
+                            [tooltip]="'Ajouter une image'"
+                            [classBtn]="'btn-success mt-2'"
+                            (onClick)="openSelection(false)"
+                    ></app-button>
+                </div>
             </div>
         </div>
 

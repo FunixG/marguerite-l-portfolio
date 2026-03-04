@@ -9,4 +9,7 @@ import {TextAndImageModule} from "../../../../../services/projects/modules/text-
 })
 export class AdminTextAndImageModuleComponent extends ModuleComponent<TextAndImageModule> {
 
+  onLoadedModule(module: TextAndImageModule): void {
+  }
+
 }

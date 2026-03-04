@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {ModuleComponent} from "../module.component";
 import {ImageAndImageModule} from "../../../../../services/projects/modules/image-and-image-module";
+import {ProjectMediaDto} from "../../../../../dtos/projects/project-media-dto";
 
 @Component({
   selector: 'app-admin-image-and-image-module',
@@ -9,6 +10,46 @@ import {ImageAndImageModule} from "../../../../../services/projects/modules/imag
 })
 export class AdminImageAndImageModuleComponent extends ModuleComponent<ImageAndImageModule> {
 
+  first?: ProjectMediaDto
+  second?: ProjectMediaDto
 
+  onLoadedModule(module: ImageAndImageModule): void {
+    if (module.firstImageId) {
+      this.mediaService.getById(module.firstImageId).subscribe({
+        next: (media) => {
+          this.first = media;
+        },
+        error: (err) => {
+          alert("Erreur de chargement de l'image : " + err.message)
+        }
+      })
+    }
 
+    if (module.secondImageId) {
+      this.mediaService.getById(module.secondImageId).subscribe({
+        next: (media) => {
+          this.second = media;
+        },
+        error: (err) => {
+          alert("Erreur de chargement de l'image : " + err.message)
+        }
+      })
+    }
+  }
+
+  openSelection(first: boolean) {
+    if (!this.module) return;
+
+    this.mediaModalService.openModal((media) => {
+      if (!media.id || !this.module) return;
+
+      if (first) {
+        this.first = media
+        this.module.firstImageId = media.id
+      } else {
+        this.second = media
+        this.module.secondImageId = media.id
+      }
+    })
+  }
 }

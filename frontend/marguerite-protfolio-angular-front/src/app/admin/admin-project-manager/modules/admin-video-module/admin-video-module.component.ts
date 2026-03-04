@@ -9,4 +9,7 @@ import {VideoModule} from "../../../../../services/projects/modules/video-module
 })
 export class AdminVideoModuleComponent extends ModuleComponent<VideoModule> {
 
+  onLoadedModule(module: VideoModule): void {
+  }
+
 }
