@@ -20,7 +20,12 @@ export class AdminProjectsListComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.projectsService.find(new PageOption(), new QueryBuilder())
+        const pageOption: PageOption = new PageOption()
+        pageOption.sort = 'createdAt:desc'
+        pageOption.elemsPerPage = 300
+        pageOption.page = 0
+
+        this.projectsService.find(pageOption, new QueryBuilder())
             .subscribe({
                 next: (projects: PageDTO<ProjectDto>) => {
                     this.projects = projects.content

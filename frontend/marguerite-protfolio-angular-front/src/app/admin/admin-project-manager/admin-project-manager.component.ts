@@ -54,9 +54,7 @@ export class AdminProjectManagerComponent implements OnInit {
       this.saving = false;
 
       if (project.id) {
-        this.activatedRoute.params.subscribe(params => {
-          params['project'] = project.id;
-        });
+        this.router.navigate(['/admin/projects', project.id], { replaceUrl: true })
       }
 
       this.cdRef.detectChanges();

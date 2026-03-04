@@ -40,29 +40,31 @@ import {
 import AdminProjectMediasManagerService from "./admin-project-medias-manager/admin-project-medias-manager.service";
 import {MediaComponent} from "../components/image/media/media.component";
 import {InputParagraphTextComponent} from "../components/inputs/input-paragraph-text/input-paragraph-text.component";
+import {AdminProjectRowComponent} from "./admin-projects-list/admin-project-row/admin-project-row.component";
 
 @NgModule({
-  declarations: [
-    AdminComponent,
-    AdminLoginComponent,
-    AdminProjectManagerComponent,
-    AdminProjectsListComponent,
-    PasswordComponent,
-    AdminTextModuleComponent,
-    AdminImageAndImageModuleComponent,
-    AdminImageAndTextModuleComponent,
-    AdminTextAndImageModuleComponent,
-    AdminVideoModuleComponent,
-    ProjectTitleComponent,
-    ProjectDescriptionComponent,
-    ProjectCoverImageComponent,
-    ModulesManagerComponent,
-    ImagePreviewComponent,
-    TextPreviewComponent,
-    VideoPreviewComponent,
-    AdminImageModuleComponent,
-    AdminProjectMediasManagerComponent
-  ],
+    declarations: [
+        AdminComponent,
+        AdminLoginComponent,
+        AdminProjectManagerComponent,
+        AdminProjectsListComponent,
+        PasswordComponent,
+        AdminTextModuleComponent,
+        AdminImageAndImageModuleComponent,
+        AdminImageAndTextModuleComponent,
+        AdminTextAndImageModuleComponent,
+        AdminVideoModuleComponent,
+        ProjectTitleComponent,
+        ProjectDescriptionComponent,
+        ProjectCoverImageComponent,
+        ModulesManagerComponent,
+        ImagePreviewComponent,
+        TextPreviewComponent,
+        VideoPreviewComponent,
+        AdminImageModuleComponent,
+        AdminProjectMediasManagerComponent,
+        AdminProjectRowComponent
+    ],
     imports: [
         CommonModule,
         AdminRoutingModule,
@@ -76,8 +78,8 @@ import {InputParagraphTextComponent} from "../components/inputs/input-paragraph-
         MediaComponent,
         InputParagraphTextComponent
     ],
-  providers: [
-    AdminProjectMediasManagerService
-  ]
+    providers: [
+        AdminProjectMediasManagerService
+    ]
 })
 export class AdminModule { }
