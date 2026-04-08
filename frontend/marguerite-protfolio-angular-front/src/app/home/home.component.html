@@ -2,7 +2,7 @@
     <div class="projects-grid">
         <div class="project-column left-column">
             @for (project of leftList; track project.id) {
-                <div class="project-card"
+                <div class="project-card card-animated"
                      (click)="openProject(project)"
                      [style.--delay]="($index * 300) + 'ms'"
                 >
@@ -18,11 +18,18 @@
                     </div>
                 </div>
             }
+
+            @for (slot of leftPlaceholders; track $index) {
+                <div class="project-filler"
+                     [style.background]="slot.color"
+                     [style.--delay]="($index * 300) + 'ms'"
+                ></div>
+            }
         </div>
 
         <div class="project-column right-column">
             @for (project of rightList; track project.id) {
-                <div class="project-card"
+                <div class="project-card card-animated"
                      (click)="openProject(project)"
                      [style.--delay]="($index * 300 + 60) + 'ms'"
                 >
@@ -37,6 +44,13 @@
                         <span>{{ project.title }}</span>
                     </div>
                 </div>
+            }
+
+            @for (slot of rightPlaceholders; track $index) {
+                <div class="project-filler"
+                     [style.background]="slot.color"
+                     [style.--delay]="($index * 300 + 60) + 'ms'"
+                ></div>
             }
         </div>
     </div>

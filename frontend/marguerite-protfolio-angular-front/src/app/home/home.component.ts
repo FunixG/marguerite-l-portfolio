@@ -17,6 +17,15 @@ export class HomeComponent implements OnInit {
   leftList: ProjectDto[] = []
   rightList: ProjectDto[] = []
 
+  private readonly minCards: number = 2;
+  private readonly fillerPalette = [
+    '#e5af5a',
+    '#2f4b3a',
+    '#2c4dec'
+  ];
+  leftPlaceholders: { color: string }[] = [];
+  rightPlaceholders: { color: string }[] = [];
+
   private page: number = 0
   hasMore: boolean = false
 
@@ -31,6 +40,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.refreshPlaceholders()
     this.loadProjects()
   }
 
@@ -73,11 +83,39 @@ export class HomeComponent implements OnInit {
 
         this.hasMore = page.totalPages - 1 > this.page;
         this.cdRef.detectChanges()
+        this.refreshPlaceholders()
       },
       error: (err) => {
         console.log(err)
       }
     })
+  }
+
+  private refreshPlaceholders(): void {
+    this.leftPlaceholders = [];
+    this.rightPlaceholders = [];
+
+    let leftMissing = Math.max(0, this.minCards - this.leftList.length);
+    let rightMissing = Math.max(0, this.minCards - this.rightList.length);
+    const totalMissing = leftMissing + rightMissing;
+
+    let isLeft: boolean = false
+
+    for (let i = 0; i < totalMissing; i++) {
+      if (isLeft) {
+        if (leftMissing > 0) {
+          this.leftPlaceholders.push({ color: this.fillerPalette[i % this.fillerPalette.length] })
+          leftMissing--
+        }
+      } else {
+        if (rightMissing > 0) {
+          this.rightPlaceholders.push({ color: this.fillerPalette[i % this.fillerPalette.length] })
+          rightMissing--
+        }
+      }
+
+      isLeft = !isLeft
+    }
   }
 
 }
