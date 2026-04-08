@@ -14,3 +14,7 @@
     gap: 10px;
     z-index: 1000;
 }
+
+body {
+    background: #4b4b4b;
+}

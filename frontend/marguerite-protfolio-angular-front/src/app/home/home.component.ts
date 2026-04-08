@@ -14,7 +14,8 @@ import {Router} from "@angular/router";
 })
 export class HomeComponent implements OnInit {
 
-  projects: ProjectDto[] = []
+  leftList: ProjectDto[] = []
+  rightList: ProjectDto[] = []
 
   private page: number = 0
   hasMore: boolean = false
@@ -57,7 +58,19 @@ export class HomeComponent implements OnInit {
 
     this.projectService.find(pageOption, query).subscribe({
       next: (page) => {
-        this.projects.push(...page.content)
+        const projects: ProjectDto[] = page.content
+        let isLeft: boolean = this.leftList.length <= this.rightList.length
+
+        projects.forEach(project => {
+          if (isLeft) {
+            this.leftList.push(project)
+          } else {
+            this.rightList.push(project)
+          }
+
+          isLeft = !isLeft
+        })
+
         this.hasMore = page.totalPages - 1 > this.page;
         this.cdRef.detectChanges()
       },

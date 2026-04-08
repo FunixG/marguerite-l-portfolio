@@ -1,24 +1,44 @@
 <div class="home-container">
     <div class="projects-grid">
-        @for (project of projects; track project.id) {
-            <div
-                    class="project-card"
-                    [class.card-large]="$index % 5 === 0"
-                    [class.card-tall]="$index % 5 === 3"
-                    (click)="openProject(project)"
-            >
-                <div class="card-image-wrapper">
-                    <img
+        <div class="project-column left-column">
+            @for (project of leftList; track project.id) {
+                <div class="project-card"
+                     (click)="openProject(project)"
+                     [style.--delay]="($index * 300) + 'ms'"
+                >
+                    <div class="card-image-wrapper">
+                        <img
                             [src]="mediasService.getMediaThumbnailUrl(project.coverMediaId)"
                             [alt]="project.title"
                             class="card-image"
-                    />
+                        />
+                    </div>
+                    <div class="card-label">
+                        <span>{{ project.title }}</span>
+                    </div>
                 </div>
-                <div class="card-label">
-                    <span>{{ project.title }}</span>
+            }
+        </div>
+
+        <div class="project-column right-column">
+            @for (project of rightList; track project.id) {
+                <div class="project-card"
+                     (click)="openProject(project)"
+                     [style.--delay]="($index * 300 + 60) + 'ms'"
+                >
+                    <div class="card-image-wrapper">
+                        <img
+                            [src]="mediasService.getMediaThumbnailUrl(project.coverMediaId)"
+                            [alt]="project.title"
+                            class="card-image"
+                        />
+                    </div>
+                    <div class="card-label">
+                        <span>{{ project.title }}</span>
+                    </div>
                 </div>
-            </div>
-        }
+            }
+        </div>
     </div>
 
     @if (hasMore) {
