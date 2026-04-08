@@ -42,7 +42,7 @@ jobs:
           tags: ghcr.io/funixg/marguerite-l-portfolio-frontend:latest
 
       - name: Set up kubectl
-        uses: azure/k8s-set-context@v4
+        uses: azure/k8s-set-context@v5
         with:
           kubeconfig: ${{ secrets.KUBECONFIG }}
         env:
