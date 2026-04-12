@@ -1,166 +1,215 @@
-html, body {
-    max-width: 100%;
-    overflow-x: hidden;
+:host {
+    --space-1: 0.5rem;
+    --space-2: 0.75rem;
+    --space-3: 1rem;
+    --space-4: 1.5rem;
+    --space-5: 2.25rem;
+
+    --radius-sm: 10px;
+    --radius-md: 16px;
+
+    display: block;
 }
 
+/* Conteneur global : moins d'espace sur les cotes */
 .container-fluid {
     width: 100%;
     margin: 0 auto;
-    padding: 3rem 2rem;
+    padding: clamp(0.5rem, 1vw, 0.9rem) clamp(0.35rem, 1vw, 0.8rem) clamp(1.5rem, 3vw, 3rem);
     box-sizing: border-box;
-    overflow: hidden;
+    overflow-x: clip;
 }
 
+h1 {
+    margin: 0 0 var(--space-3);
+    text-align: center;
+    line-height: 1.15;
+}
+
+.project-description {
+    width: min(100%, 78ch);
+    margin: 0 auto var(--space-5);
+    text-align: center;
+    line-height: 1.75;
+    opacity: 0.9;
+}
+
+/* Le contenu prend toute la largeur dispo */
 .content {
+    width: 100%;
+    margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 2.5rem;
+    gap: clamp(0.9rem, 2vw, 1.4rem);
+    overflow-x: hidden;
+}
+
+/* Chaque module = ligne pleine largeur, sans carte/cadre */
+:host ::ng-deep .content > * {
     width: 100%;
-    overflow: hidden;
-}
-
-:host ::ng-deep .content img {
     max-width: 100%;
-    max-height: 100vh;
-    height: auto;
-    display: block;
-}
-
-:host ::ng-deep .content * {
     box-sizing: border-box;
-    max-width: 100%;
+    padding: clamp(0.25rem, 0.8vw, 0.55rem);
+    border: 0;
+    background: transparent;
+    border-radius: 0;
+    overflow: visible;
 }
 
-:host ::ng-deep .content .text-module {
-    padding: 2rem 2.5rem;
-    border-radius: 0 4px 4px 0;
-}
-
-:host ::ng-deep .content .text-module p {
-    font-size: clamp(0.95rem, 1.8vw, 1.1rem);
-    line-height: 1.9;
-    margin: 0;
-    max-width: 100%;
-}
-
-:host ::ng-deep .content .image-and-image {
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
-    width: 100%;
-    overflow-x: auto;
-    overflow-y: hidden;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    padding-bottom: 0.75rem;
-    cursor: grab;
-    max-width: 100%;
-}
-
-:host ::ng-deep .content .image-and-image:active {
-    cursor: grabbing;
-}
-
-:host ::ng-deep .content .image-and-image::-webkit-scrollbar {
-    height: 4px;
-}
-
-:host ::ng-deep .content .image-and-image::-webkit-scrollbar-track {
-    border-radius: 2px;
-}
-
-:host ::ng-deep .content .image-and-image::-webkit-scrollbar-thumb {
-    border-radius: 2px;
-}
-
-:host ::ng-deep .content .image-and-image img {
-    flex: 0 0 auto;
-    width: 75vw;
-    max-width: 700px;
-    max-height: 100vh;
-    object-fit: contain;
-    scroll-snap-align: start;
-}
-
-:host ::ng-deep .content .image-and-image img:hover {
-    transform: scale(1.01);
-}
-
-:host ::ng-deep .content .image-and-text {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    align-items: center;
-    width: 100%;
-}
-
-:host ::ng-deep .content .image-and-text img {
-    width: 100%;
-    height: 380px;
-    object-fit: cover;
-    border-radius: 4px;
+/* Arrondis uniquement sur les elements internes */
+:host ::ng-deep .content img,
+:host ::ng-deep .content video {
     display: block;
-}
-
-:host ::ng-deep .content .image-and-text p {
-    font-size: clamp(0.95rem, 1.8vw, 1.1rem);
-    line-height: 1.9;
-    margin: 0;
+    width: 100%;
     max-width: 100%;
+    border-radius: var(--radius-md);
 }
 
-:host ::ng-deep .content .text-and-image {
+/* ========== single-image-module ========== */
+/* Structure possible:
+   left:   img + empty-square
+   right:  empty-square + img
+   center: empty-square + img + empty-square */
+:host ::ng-deep .content .single-image-module {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
+    grid-template-columns: 1fr minmax(260px, 2.4fr) 1fr;
+    gap: var(--space-3);
     align-items: center;
-    width: 100%;
 }
 
-:host ::ng-deep .content .text-and-image img {
+:host ::ng-deep .content .single-image-module > img:only-child {
+    grid-column: 1 / -1;
+    justify-self: stretch;
     width: 100%;
-    height: 380px;
-    object-fit: cover;
-    border-radius: 4px;
-    display: block;
-}
-
-:host ::ng-deep .content .text-and-image p {
-    font-size: clamp(0.95rem, 1.8vw, 1.1rem);
-    line-height: 1.9;
-    margin: 0;
     max-width: 100%;
 }
 
-@media (max-width: 768px) {
-    .container-fluid {
-        padding: 2rem 1rem;
-    }
+:host ::ng-deep .content .single-image-module .empty-square {
+    min-height: 1px; /* espace volontaire */
+}
 
-    :host ::ng-deep .content .image-and-image img {
-        width: 85vw;
-        height: 280px;
-    }
+:host ::ng-deep .content .single-image-module .landscape-image {
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+}
 
-    :host ::ng-deep .content .image-and-text,
-    :host ::ng-deep .content .text-and-image {
+:host ::ng-deep .content .single-image-module .portrait-image {
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    max-height: min(86vh, 980px);
+}
+
+/* classe telle que generee dans le TS */
+:host ::ng-deep .content .single-image-module .image-full-with {
+    width: 100%;
+    max-width: none;
+}
+
+/* ========== double-image modules ========== */
+:host ::ng-deep .content .double-image-landscape-module,
+:host ::ng-deep .content .double-image-portrait-module {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-3);
+}
+
+:host ::ng-deep .content .double-image-landscape-module .landscape-image {
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+}
+
+:host ::ng-deep .content .double-image-portrait-module .portrait-image {
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+}
+
+/* ========== video-module ========== */
+:host ::ng-deep .content .video-module video {
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    background: #000;
+}
+
+/* ========== Responsive ========== */
+@media (max-width: 980px) {
+    :host ::ng-deep .content .single-image-module {
         grid-template-columns: 1fr;
-        gap: 1.5rem;
     }
 
-    :host ::ng-deep .content .image-and-text img,
-    :host ::ng-deep .content .text-and-image img {
-        height: 260px;
+    /* Sur mobile, on retire les colonnes vides volontaires */
+    :host ::ng-deep .content .single-image-module .empty-square {
+        display: none;
     }
 
-    :host ::ng-deep .content .text-module {
-        padding: 1.25rem 1.5rem;
+    :host ::ng-deep .content .double-image-landscape-module,
+    :host ::ng-deep .content .double-image-portrait-module {
+        grid-template-columns: 1fr;
     }
 }
 
-@media (max-width: 480px) {
-    :host ::ng-deep .content .image-and-text img,
-    :host ::ng-deep .content .text-and-image img {
-        height: 220px;
+@media (max-width: 640px) {
+    .container-fluid {
+        padding-inline: 0.25rem;
     }
+
+    .project-description {
+        margin-bottom: var(--space-4);
+    }
+
+    :host ::ng-deep .content {
+        gap: var(--space-3);
+    }
+
+    :host ::ng-deep .content > * {
+        padding: 0.2rem;
+    }
+}
+
+/* ===== single-image-module : alignement + colonnes vides sombres ===== */
+:host {
+    --empty-square-bg: rgb(53 53 53 / 0.72);
+}
+
+/* Grille 3 colonnes conservée */
+:host ::ng-deep .content .single-image-module {
+    display: grid;
+    grid-template-columns: 1fr minmax(260px, 2.4fr) 1fr;
+    gap: var(--space-3);
+    align-items: stretch;
+}
+
+/* Les "carrés" vides visibles pour remplir les colonnes */
+:host ::ng-deep .content .single-image-module .empty-square {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    min-height: clamp(120px, 18vw, 240px);
+    background: var(--empty-square-bg);
+    border-radius: var(--radius-md);
+}
+
+/* LEFT: <img> + <empty> */
+:host ::ng-deep .content .single-image-module > img:first-child:nth-last-child(2) {
+    grid-column: 1 / span 2;
+}
+:host ::ng-deep .content .single-image-module > .empty-square:last-child:nth-child(2) {
+    grid-column: 3;
+}
+
+/* RIGHT: <empty> + <img> */
+:host ::ng-deep .content .single-image-module > .empty-square:first-child:nth-last-child(2) {
+    grid-column: 1;
+}
+:host ::ng-deep .content .single-image-module > img:last-child:nth-child(2) {
+    grid-column: 2 / span 2;
+}
+
+/* CENTER: <empty> + <img> + <empty> */
+:host ::ng-deep .content .single-image-module > .empty-square:first-child:nth-last-child(3) {
+    grid-column: 1;
+}
+:host ::ng-deep .content .single-image-module > img:nth-child(2):nth-last-child(2) {
+    grid-column: 2;
+}
+:host ::ng-deep .content .single-image-module > .empty-square:last-child:nth-child(3) {
+    grid-column: 3;
 }

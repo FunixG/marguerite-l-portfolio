@@ -3,16 +3,14 @@ import {ProjectDto} from "../../dtos/projects/project-dto";
 import {ChangeDetectorRef, Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
-import {BaseProjectModule} from "./modules/base-project-module";
+import {BaseProjectModule} from "./modules/abstract/base-project-module";
 import {ErrorDto} from "../../lib/dtos/error-dto";
-import {TextProjectModule} from "./modules/text-project-module";
-import {ImageAndImageModule} from "./modules/image-and-image-module";
-import {ImageAndTextModule} from "./modules/image-and-text-module";
-import {TextAndImageModule} from "./modules/text-and-image-module";
 import {VideoModule} from "./modules/video-module";
-import {ImageModule} from "./modules/image-module";
+import {SingleImageModule} from "./modules/single-image-module";
 import {QueryBuilder, QueryParam} from "../../lib/query-builder";
 import {PageOption} from "../../lib/dtos/page-dto";
+import {DoubleImageLandscapeModule} from "./modules/double-image-landscape-module";
+import {DoubleImagePortraitModule} from "./modules/double-image-portrait-module";
 
 @Injectable({
     providedIn: 'root'
@@ -178,16 +176,12 @@ export default class ProjectsService extends CrudHttpClient<ProjectDto> {
 
     private getModuleByName(data: { data: string, type: string }): BaseProjectModule | undefined {
         switch (data.type) {
-            case new ImageAndImageModule().moduleName:
-                return ImageAndImageModule.fromJson(data.data);
-            case new ImageAndTextModule().moduleName:
-                return ImageAndTextModule.fromJson(data.data);
-            case new ImageModule().moduleName:
-                return ImageModule.fromJson(data.data);
-            case new TextAndImageModule().moduleName:
-                return TextAndImageModule.fromJson(data.data);
-            case new TextProjectModule().moduleName:
-                return TextProjectModule.fromJson(data.data);
+            case new DoubleImageLandscapeModule().moduleName:
+                return DoubleImageLandscapeModule.fromJson(data.data);
+            case new DoubleImagePortraitModule().moduleName:
+                return DoubleImagePortraitModule.fromJson(data.data);
+            case new SingleImageModule().moduleName:
+                return SingleImageModule.fromJson(data.data);
             case new VideoModule().moduleName:
                 return VideoModule.fromJson(data.data);
 

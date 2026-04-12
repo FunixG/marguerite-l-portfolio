@@ -1,19 +1,19 @@
 import {Component} from '@angular/core';
 import {ModuleComponent} from "../module.component";
-import {ImageModule} from "../../../../../services/projects/modules/image-module";
+import {SingleImageModule} from "../../../../../services/projects/modules/single-image-module";
 import {ProjectMediaDto, ProjectMediaType} from "../../../../../dtos/projects/project-media-dto";
-import {ImageAndTextModule} from "../../../../../services/projects/modules/image-and-text-module";
+import ProjectsMediasService from "../../../../../services/projects/projects-medias-service";
 
 @Component({
   selector: 'app-admin-image-module',
   templateUrl: './admin-image-module.component.html',
   standalone: false
 })
-export class AdminImageModuleComponent extends ModuleComponent<ImageModule> {
+export class AdminImageModuleComponent extends ModuleComponent<SingleImageModule> {
 
   image?: ProjectMediaDto
 
-  onLoadedModule(module: ImageAndTextModule): void {
+  onLoadedModule(module: SingleImageModule): void {
     if (module.imageId) {
       this.mediaService.getById(module.imageId).subscribe({
         next: (media) => {
@@ -40,7 +40,71 @@ export class AdminImageModuleComponent extends ModuleComponent<ImageModule> {
       this.image = media
       this.module.imageId = media.id
       this.module.altImage = media.mediaDescription
+      this.cdRef.detectChanges();
+
+      this.determineImageOrientation()
+      this.alignCenterImage()
     })
+  }
+
+  alignCenterImage() {
+    if (!this.module) return;
+
+    this.module.imgCenter = true
+    this.module.imgLeft = false
+    this.module.imgRight = false
+    this.cdRef.detectChanges();
+  }
+
+  alignRightImage() {
+    if (!this.module) return;
+
+    this.module.imgCenter = false
+    this.module.imgLeft = false
+    this.module.imgRight = true
+    this.cdRef.detectChanges();
+  }
+
+  alignLeftImage() {
+    if (!this.module) return;
+
+    this.module.imgCenter = false
+    this.module.imgLeft = true
+    this.module.imgRight = false
+    this.cdRef.detectChanges();
+  }
+
+  centerImageSwitchFullWidth() {
+    if (!this.module?.imgCenter) return;
+
+    this.module.imgLarge = !this.module.imgLarge
+    this.cdRef.detectChanges();
+  }
+
+  /**
+   * Load the image and calculate if the image is in portrait or landscape mode
+   * @private
+   */
+  private determineImageOrientation() {
+    if (!this.module?.imageId) return;
+
+    const imageUrl: string = ProjectsMediasService.getMediaUrl(this.module.imageId)
+    const img = new Image();
+
+    img.onload = () => {
+      if (!this.module) return
+      this.module.imgPortrait = img.naturalHeight > img.naturalWidth;
+      this.cdRef.detectChanges();
+    };
+
+    img.onerror = () => {
+      if (!this.module) return
+      this.module.imgPortrait = false;
+      this.cdRef.detectChanges();
+      alert("Impossible de charger l'image pour détecter son orientation.");
+    };
+
+    img.src = imageUrl;
   }
 
 }

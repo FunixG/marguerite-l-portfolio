@@ -1,11 +1,9 @@
 import {Component, ElementRef, HostListener} from '@angular/core';
 import ProjectsService from "../../../../services/projects/projects-service";
-import {ImageAndImageModule} from "../../../../services/projects/modules/image-and-image-module";
-import {ImageAndTextModule} from "../../../../services/projects/modules/image-and-text-module";
-import {TextAndImageModule} from "../../../../services/projects/modules/text-and-image-module";
-import {TextProjectModule} from "../../../../services/projects/modules/text-project-module";
 import {VideoModule} from "../../../../services/projects/modules/video-module";
-import {ImageModule} from "../../../../services/projects/modules/image-module";
+import {SingleImageModule} from "../../../../services/projects/modules/single-image-module";
+import {DoubleImagePortraitModule} from "../../../../services/projects/modules/double-image-portrait-module";
+import {DoubleImageLandscapeModule} from "../../../../services/projects/modules/double-image-landscape-module";
 
 @Component({
   selector: 'app-modules-manager',
@@ -42,23 +40,17 @@ export class ModulesManagerComponent {
 
   addModule(name: string): void {
     switch (name) {
-      case new ImageAndImageModule().moduleName:
-        this.projectsService.modules.push(new ImageAndImageModule());
+      case new DoubleImagePortraitModule().moduleName:
+        this.projectsService.modules.push(new DoubleImagePortraitModule());
         break;
-      case new ImageAndTextModule().moduleName:
-        this.projectsService.modules.push(new ImageAndTextModule());
-        break;
-      case new TextAndImageModule().moduleName:
-        this.projectsService.modules.push(new TextAndImageModule());
-        break;
-      case new TextProjectModule().moduleName:
-        this.projectsService.modules.push(new TextProjectModule());
+      case new DoubleImageLandscapeModule().moduleName:
+        this.projectsService.modules.push(new DoubleImageLandscapeModule());
         break;
       case new VideoModule().moduleName:
         this.projectsService.modules.push(new VideoModule());
         break;
-      case new ImageModule().moduleName:
-        this.projectsService.modules.push(new ImageModule());
+      case new SingleImageModule().moduleName:
+        this.projectsService.modules.push(new SingleImageModule());
         break;
 
       default:

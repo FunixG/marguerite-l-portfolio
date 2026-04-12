@@ -1,13 +1,13 @@
 <div class="card">
-    <h5 class="card-header">Image et texte</h5>
+    <h5 class="card-header">[Paysage] Deux images</h5>
     <div class="card-body">
         <div class="row align-items-center text-center">
             <div class="col">
                 <div>
-                    @if (image) {
-                        <app-media [media]="image"></app-media>
+                    @if (first) {
+                        <app-media [media]="first"></app-media>
                     } @else {
-                        <app-image-preview></app-image-preview>
+                        <app-image-preview [isPortrait]="false"></app-image-preview>
                     }
                 </div>
 
@@ -16,17 +16,28 @@
                             [label]="'+'"
                             [tooltip]="'Ajouter une image'"
                             [classBtn]="'btn-success mt-2'"
-                            (onClick)="openImageSelection()"
+                            (onClick)="openSelection(true)"
                     ></app-button>
                 </div>
             </div>
 
             <div class="col">
-                <app-input-paragraph-text
-                        [text]="text"
-                        [placeholder]="'Texte à afficher à côté de l\'image...'"
-                        (textChange)="setText($event)"
-                ></app-input-paragraph-text>
+                <div>
+                    @if (second) {
+                        <app-media [media]="second"></app-media>
+                    } @else {
+                        <app-image-preview [isPortrait]="false"></app-image-preview>
+                    }
+                </div>
+
+                <div>
+                    <app-button
+                            [label]="'+'"
+                            [tooltip]="'Ajouter une image'"
+                            [classBtn]="'btn-success mt-2'"
+                            (onClick)="openSelection(false)"
+                    ></app-button>
+                </div>
             </div>
         </div>
 

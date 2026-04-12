@@ -3,14 +3,14 @@
         <div class="opened-menu-container p-2 d-flex flex-column gap-3">
 
             <div class="card">
-                <h5 class="card-header">Deux images</h5>
+                <h5 class="card-header">[Paysage] Deux images</h5>
                 <div class="card-body">
                     <div class="row align-items-center text-center">
                         <div class="col">
-                            <app-image-preview></app-image-preview>
+                            <app-image-preview [isPortrait]="false"></app-image-preview>
                         </div>
                         <div class="col">
-                            <app-image-preview></app-image-preview>
+                            <app-image-preview [isPortrait]="false"></app-image-preview>
                         </div>
                     </div>
 
@@ -20,47 +20,26 @@
                                     [label]="'+'"
                                     [tooltip]="'Ajouter le module'"
                                     [classBtn]="'btn-success'"
-                                    (onClick)="addModule('ImageAndImageModule')"
+                                    (onClick)="addModule('double-image-landscape-module')"
                             ></app-button>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="card">
-                <h5 class="card-header">Image et texte</h5>
-                <div class="card-body">
-                    <div class="row align-items-center text-center">
-                        <div class="col">
-                            <app-image-preview></app-image-preview>
-                        </div>
-                        <div class="col">
-                            <app-text-preview></app-text-preview>
-                        </div>
-                    </div>
-
-                    <div class="row mt-3">
-                        <div class="col d-flex justify-content-end">
-                            <app-button
-                                    [label]="'+'"
-                                    [tooltip]="'Ajouter le module'"
-                                    [classBtn]="'btn-success'"
-                                    (onClick)="addModule('ImageAndTextModule')"
-                            ></app-button>
-                        </div>
-                    </div>
+                <div class="card-footer text-body-secondary">
+                    [PAYSAGE] - Permet d'afficher deux images côte a côte, les deux images doivent être en format paysage (16:9) pour un rendu optimal sur la page.
                 </div>
             </div>
 
             <div class="card">
-                <h5 class="card-header">Texte et image</h5>
+                <h5 class="card-header">[Portrait] Deux images</h5>
                 <div class="card-body">
                     <div class="row align-items-center text-center">
                         <div class="col">
-                            <app-text-preview></app-text-preview>
+                            <app-image-preview [isPortrait]="true"></app-image-preview>
                         </div>
                         <div class="col">
-                            <app-image-preview></app-image-preview>
+                            <app-image-preview [isPortrait]="true"></app-image-preview>
                         </div>
                     </div>
 
@@ -70,19 +49,29 @@
                                     [label]="'+'"
                                     [tooltip]="'Ajouter le module'"
                                     [classBtn]="'btn-success'"
-                                    (onClick)="addModule('TextAndImageModule')"
+                                    (onClick)="addModule('double-image-portrait-module')"
                             ></app-button>
                         </div>
                     </div>
                 </div>
+
+                <div class="card-footer text-body-secondary">
+                    [PORTRAIT] - Permet d'afficher deux images côte a côte, les deux images doivent être en format portrait (9:16) pour un rendu optimal sur la page.
+                </div>
             </div>
 
             <div class="card">
-                <h5 class="card-header">Paragraphe</h5>
+                <h5 class="card-header">Image seule</h5>
                 <div class="card-body">
                     <div class="row align-items-center text-center">
                         <div class="col">
-                            <app-text-preview></app-text-preview>
+                            <app-image-preview [isPortrait]="false"></app-image-preview>
+                        </div>
+                        <div class="col">
+                            <p>Ou</p>
+                        </div>
+                        <div class="col">
+                            <app-image-preview [isPortrait]="true"></app-image-preview>
                         </div>
                     </div>
 
@@ -92,10 +81,14 @@
                                     [label]="'+'"
                                     [tooltip]="'Ajouter le module'"
                                     [classBtn]="'btn-success'"
-                                    (onClick)="addModule('TextProjectModule')"
+                                    (onClick)="addModule('single-image-module')"
                             ></app-button>
                         </div>
                     </div>
+                </div>
+
+                <div class="card-footer text-body-secondary">
+                    Affiche une seule image, ce module est plus flexible et comprend par lui même si l'image ajoutée est en paysage ou portrait. Il est aussi possible de choisir l'alignement de l'image (centrée, à gauche ou à droite).
                 </div>
             </div>
 
@@ -114,32 +107,14 @@
                                     [label]="'+'"
                                     [tooltip]="'Ajouter le module'"
                                     [classBtn]="'btn-success'"
-                                    (onClick)="addModule('VideoModule')"
+                                    (onClick)="addModule('video-module')"
                             ></app-button>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="card">
-                <h5 class="card-header">Image</h5>
-                <div class="card-body">
-                    <div class="row align-items-center text-center">
-                        <div class="col">
-                            <app-image-preview></app-image-preview>
-                        </div>
-                    </div>
-
-                    <div class="row mt-3">
-                        <div class="col d-flex justify-content-end">
-                            <app-button
-                                    [label]="'+'"
-                                    [tooltip]="'Ajouter le module'"
-                                    [classBtn]="'btn-success'"
-                                    (onClick)="addModule('ImageModule')"
-                            ></app-button>
-                        </div>
-                    </div>
+                <div class="card-footer text-body-secondary">
+                    [PAYSAGE] Affiche une video qui doit être en format paysage (16:9) pour un affichage qui prend toute la largeur de l'écran et la hauteur.
                 </div>
             </div>
 
