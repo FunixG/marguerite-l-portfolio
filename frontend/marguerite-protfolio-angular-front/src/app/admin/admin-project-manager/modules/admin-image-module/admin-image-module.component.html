@@ -1,25 +1,79 @@
 <div class="card">
     <h5 class="card-header">Image</h5>
     <div class="card-body">
-        <div class="row align-items-center text-center">
-            <div class="col">
-                <div>
-                    @if (image) {
-                        <app-media [media]="image"></app-media>
-                    } @else {
-                        <app-image-preview></app-image-preview>
-                    }
-                </div>
+        @if (image && module) {
+            <div class="row align-items-center text-center mb-3">
+                <div class="col d-flex justify-content-center">
+                    <div class="btn-group" role="group" aria-label="Alignement image">
+                        <app-button
+                                [label]="'Gauche'"
+                                [tooltip]="'Aligner l\'image à gauche'"
+                                [classBtn]="module.imgLeft ? 'btn-primary active' : 'btn-outline-primary'"
+                                (onClick)="alignLeftImage()"
+                        ></app-button>
 
-                <div>
-                    <app-button
-                            [label]="'+'"
-                            [tooltip]="'Ajouter une image'"
-                            [classBtn]="'btn-success mt-2'"
-                            (onClick)="openImageSelection()"
-                    ></app-button>
+                        <app-button
+                                [label]="'Centre'"
+                                [tooltip]="'Aligner l\'image au centre'"
+                                [classBtn]="module.imgCenter ? 'btn-primary active' : 'btn-outline-primary'"
+                                (onClick)="alignCenterImage()"
+                        ></app-button>
+
+                        <app-button
+                                [label]="'Droite'"
+                                [tooltip]="'Aligner l\'image à droite'"
+                                [classBtn]="module.imgRight ? 'btn-primary active' : 'btn-outline-primary'"
+                                (onClick)="alignRightImage()"
+                        ></app-button>
+                    </div>
                 </div>
             </div>
+        }
+
+
+        <div class="row align-items-center text-center">
+            @if (image && module) {
+                @if (!module.imgLeft) {
+                    <div class="col">
+                        <figure class="figure">
+                        </figure>
+                    </div>
+                }
+
+                <div class="col">
+                    <app-media [media]="image"></app-media>
+
+                    <div>
+                        <app-button
+                                [label]="'+'"
+                                [tooltip]="'Changer l\'image'"
+                                [classBtn]="'btn-success mt-2'"
+                                (onClick)="openImageSelection()"
+                        ></app-button>
+                    </div>
+                </div>
+
+                @if (!module.imgRight) {
+                    <div class="col">
+                        <figure class="figure">
+                        </figure>
+                    </div>
+                }
+            } @else {
+                <div class="col">
+                    <app-image-preview></app-image-preview>
+
+                    <div>
+                        <app-button
+                                [label]="'+'"
+                                [tooltip]="'Ajouter une image'"
+                                [classBtn]="'btn-success mt-2'"
+                                (onClick)="openImageSelection()"
+                        ></app-button>
+                    </div>
+                </div>
+            }
+
         </div>
 
         <div class="row mt-3">
