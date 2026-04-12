@@ -22,7 +22,6 @@ import {ProjectCoverImageComponent} from "./admin-project-manager/project-cover-
 import {FormsModule} from "@angular/forms";
 import {ModulesManagerComponent} from "./admin-project-manager/modules-manager/modules-manager.component";
 import {ImagePreviewComponent} from "./admin-project-manager/previews/image-preview/image-preview.component";
-import {TextPreviewComponent} from "./admin-project-manager/previews/text-preview/text-preview.component";
 import {VideoPreviewComponent} from "./admin-project-manager/previews/video-preview/video-preview.component";
 import {
     AdminImageModuleComponent
@@ -55,7 +54,6 @@ import {
         ProjectCoverImageComponent,
         ModulesManagerComponent,
         ImagePreviewComponent,
-        TextPreviewComponent,
         VideoPreviewComponent,
         AdminProjectMediasManagerComponent,
         AdminProjectRowComponent

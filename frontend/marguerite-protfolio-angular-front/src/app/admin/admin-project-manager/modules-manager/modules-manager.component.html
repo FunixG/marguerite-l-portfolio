@@ -7,10 +7,10 @@
                 <div class="card-body">
                     <div class="row align-items-center text-center">
                         <div class="col">
-                            <app-image-preview></app-image-preview>
+                            <app-image-preview [isPortrait]="false"></app-image-preview>
                         </div>
                         <div class="col">
-                            <app-image-preview></app-image-preview>
+                            <app-image-preview [isPortrait]="false"></app-image-preview>
                         </div>
                     </div>
 
@@ -36,10 +36,10 @@
                 <div class="card-body">
                     <div class="row align-items-center text-center">
                         <div class="col">
-                            <app-image-preview></app-image-preview>
+                            <app-image-preview [isPortrait]="true"></app-image-preview>
                         </div>
                         <div class="col">
-                            <app-image-preview></app-image-preview>
+                            <app-image-preview [isPortrait]="true"></app-image-preview>
                         </div>
                     </div>
 
@@ -65,7 +65,13 @@
                 <div class="card-body">
                     <div class="row align-items-center text-center">
                         <div class="col">
-                            <app-image-preview></app-image-preview>
+                            <app-image-preview [isPortrait]="false"></app-image-preview>
+                        </div>
+                        <div class="col">
+                            <p>Ou</p>
+                        </div>
+                        <div class="col">
+                            <app-image-preview [isPortrait]="true"></app-image-preview>
                         </div>
                     </div>
 
