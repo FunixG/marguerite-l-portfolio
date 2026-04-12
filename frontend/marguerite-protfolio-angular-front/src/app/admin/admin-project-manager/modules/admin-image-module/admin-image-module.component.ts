@@ -1,19 +1,18 @@
 import {Component} from '@angular/core';
 import {ModuleComponent} from "../module.component";
-import {ImageModule} from "../../../../../services/projects/modules/image-module";
+import {SingleImageModule} from "../../../../../services/projects/modules/single-image-module";
 import {ProjectMediaDto, ProjectMediaType} from "../../../../../dtos/projects/project-media-dto";
-import {ImageAndTextModule} from "../../../../../services/projects/modules/image-and-text-module";
 
 @Component({
   selector: 'app-admin-image-module',
   templateUrl: './admin-image-module.component.html',
   standalone: false
 })
-export class AdminImageModuleComponent extends ModuleComponent<ImageModule> {
+export class AdminImageModuleComponent extends ModuleComponent<SingleImageModule> {
 
   image?: ProjectMediaDto
 
-  onLoadedModule(module: ImageAndTextModule): void {
+  onLoadedModule(module: SingleImageModule): void {
     if (module.imageId) {
       this.mediaService.getById(module.imageId).subscribe({
         next: (media) => {

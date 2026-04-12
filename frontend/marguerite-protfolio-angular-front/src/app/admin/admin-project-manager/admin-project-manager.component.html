@@ -47,23 +47,17 @@
                     @for (module of projectsService.modules; track module) {
                         <div class="card module" cdkDrag>
                             @switch (module.getType()) {
-                                @case("ImageAndImageModule") {
-                                    <app-admin-image-and-image-module [moduleId]="module.getId()"></app-admin-image-and-image-module>
+                                @case("double-image-landscape-module") {
+                                    <app-admin-double-image-landscape-module [moduleId]="module.getId()"></app-admin-double-image-landscape-module>
                                 }
-                                @case("ImageAndTextModule") {
-                                    <app-admin-image-and-text-module [moduleId]="module.getId()"></app-admin-image-and-text-module>
+                                @case("double-image-portrait-module") {
+                                    <app-admin-double-image-portrait-module [moduleId]="module.getId()"></app-admin-double-image-portrait-module>
                                 }
-                                @case ("TextAndImageModule") {
-                                    <app-admin-text-and-image-module [moduleId]="module.getId()"></app-admin-text-and-image-module>
-                                }
-                                @case ("TextProjectModule") {
-                                    <app-admin-text-module [moduleId]="module.getId()"></app-admin-text-module>
-                                }
-                                @case ("VideoModule") {
-                                    <app-admin-video-module [moduleId]="module.getId()"></app-admin-video-module>
-                                }
-                                @case ("ImageModule") {
+                                @case ("single-image-module") {
                                     <app-admin-image-module [moduleId]="module.getId()"></app-admin-image-module>
+                                }
+                                @case ("video-module") {
+                                    <app-admin-video-module [moduleId]="module.getId()"></app-admin-video-module>
                                 }
                             }
                         </div>

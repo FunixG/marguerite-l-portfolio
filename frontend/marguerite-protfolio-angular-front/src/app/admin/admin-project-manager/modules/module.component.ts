@@ -1,4 +1,4 @@
-import {BaseProjectModule} from "../../../../services/projects/modules/base-project-module";
+import {BaseProjectModule} from "../../../../services/projects/modules/abstract/base-project-module";
 import {ChangeDetectorRef, Directive, Input, OnInit} from "@angular/core";
 import ProjectsService from "../../../../services/projects/projects-service";
 import ProjectsMediasService from "../../../../services/projects/projects-medias-service";

@@ -10,16 +10,9 @@ import {InputTextComponent} from "../components/inputs/input-text/input-text.com
 import {LoaderComponent} from "../components/loader/loader.component";
 import {PasswordComponent} from "./password/password.component";
 import {CdkDrag, CdkDropList} from "@angular/cdk/drag-drop";
-import {AdminTextModuleComponent} from "./admin-project-manager/modules/admin-text-module/admin-text-module.component";
 import {
-    AdminImageAndImageModuleComponent
-} from "./admin-project-manager/modules/admin-image-and-image-module/admin-image-and-image-module.component";
-import {
-    AdminImageAndTextModuleComponent
-} from "./admin-project-manager/modules/admin-image-and-text-module/admin-image-and-text-module.component";
-import {
-    AdminTextAndImageModuleComponent
-} from "./admin-project-manager/modules/admin-text-and-image-module/admin-text-and-image-module.component";
+    AdminDoubleImagePortraitModuleComponent
+} from "./admin-project-manager/modules/admin-double-image-portrait-module/admin-double-image-portrait-module.component";
 import {
     AdminVideoModuleComponent
 } from "./admin-project-manager/modules/admin-video-module/admin-video-module.component";
@@ -42,6 +35,9 @@ import {MediaComponent} from "../components/image/media/media.component";
 import {InputParagraphTextComponent} from "../components/inputs/input-paragraph-text/input-paragraph-text.component";
 import {AdminProjectRowComponent} from "./admin-projects-list/admin-project-row/admin-project-row.component";
 import {InputCheckboxComponent} from "../components/inputs/input-checkbox/input-checkbox.component";
+import {
+    AdminDoubleImageLandscapeModuleComponent
+} from "./admin-project-manager/modules/admin-double-image-landscape-module/admin-double-image-landscape-module.component";
 
 @NgModule({
     declarations: [
@@ -50,10 +46,9 @@ import {InputCheckboxComponent} from "../components/inputs/input-checkbox/input-
         AdminProjectManagerComponent,
         AdminProjectsListComponent,
         PasswordComponent,
-        AdminTextModuleComponent,
-        AdminImageAndImageModuleComponent,
-        AdminImageAndTextModuleComponent,
-        AdminTextAndImageModuleComponent,
+        AdminDoubleImagePortraitModuleComponent,
+        AdminDoubleImageLandscapeModuleComponent,
+        AdminImageModuleComponent,
         AdminVideoModuleComponent,
         ProjectTitleComponent,
         ProjectDescriptionComponent,
@@ -62,7 +57,6 @@ import {InputCheckboxComponent} from "../components/inputs/input-checkbox/input-
         ImagePreviewComponent,
         TextPreviewComponent,
         VideoPreviewComponent,
-        AdminImageModuleComponent,
         AdminProjectMediasManagerComponent,
         AdminProjectRowComponent
     ],

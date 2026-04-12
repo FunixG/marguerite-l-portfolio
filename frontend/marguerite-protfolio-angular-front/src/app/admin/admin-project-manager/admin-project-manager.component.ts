@@ -1,7 +1,7 @@
 import {ChangeDetectorRef, Component, HostListener, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import ProjectsService from "../../../services/projects/projects-service";
-import {BaseProjectModule} from "../../../services/projects/modules/base-project-module";
+import {BaseProjectModule} from "../../../services/projects/modules/abstract/base-project-module";
 import {CdkDragDrop, moveItemInArray} from "@angular/cdk/drag-drop";
 import {ErrorDto} from "../../../lib/dtos/error-dto";
 import {ProjectDto} from "../../../dtos/projects/project-dto";
