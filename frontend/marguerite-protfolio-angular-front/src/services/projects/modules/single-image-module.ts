@@ -7,6 +7,7 @@ export class SingleImageModule extends ProjectModule {
     imgLeft: boolean
     imgRight: boolean
     imgPortrait: boolean
+    imgLarge: boolean
 
     imageId: string
     altImage: string
@@ -16,6 +17,7 @@ export class SingleImageModule extends ProjectModule {
         imgLeft: boolean = false,
         imgRight: boolean = false,
         imgPortrait: boolean = false,
+        imgLarge: boolean = false,
         imageId: string = '',
         altImage: string = ''
     ) {
@@ -24,13 +26,14 @@ export class SingleImageModule extends ProjectModule {
         this.imgLeft = imgLeft
         this.imgRight = imgRight
         this.imgPortrait = imgPortrait
+        this.imgLarge = imgLarge
 
         this.imageId = imageId
         this.altImage = altImage
     }
 
     getHtml(): string {
-        const imageHtml = `<img class="${this.imgPortrait ? 'portrait-image' : 'landscape-image'}" src="${ProjectsMediasService.getMediaUrl(this.imageId)}" alt="${this.altImage}" />`
+        const imageHtml = `<img class="${this.imgPortrait ? 'portrait-image' : 'landscape-image'}${this.imgLarge ? ' image-full-with' : ''}" src="${ProjectsMediasService.getMediaUrl(this.imageId)}" alt="${this.altImage}" />`
         const emptySquare = `<div class="empty-square"></div>`
 
         if (this.imgLeft) {
@@ -50,7 +53,8 @@ export class SingleImageModule extends ProjectModule {
             imgCenter: this.imgCenter,
             imgLeft: this.imgLeft,
             imgRight: this.imgRight,
-            imgPortrait: this.imgPortrait
+            imgPortrait: this.imgPortrait,
+            imgLarge: this.imgLarge
         });
     }
 
@@ -61,6 +65,7 @@ export class SingleImageModule extends ProjectModule {
             jsonData.imgLeft ?? false,
             jsonData.imgRight ?? false,
             jsonData.imgPortrait ?? false,
+            jsonData.imgLarge ?? false,
             jsonData.imageId ?? '',
             jsonData.altImage ?? ''
         );

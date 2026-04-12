@@ -40,6 +40,7 @@ export class AdminImageModuleComponent extends ModuleComponent<SingleImageModule
       this.image = media
       this.module.imageId = media.id
       this.module.altImage = media.mediaDescription
+      this.cdRef.detectChanges();
 
       this.determineImageOrientation()
       this.alignCenterImage()
@@ -52,6 +53,7 @@ export class AdminImageModuleComponent extends ModuleComponent<SingleImageModule
     this.module.imgCenter = true
     this.module.imgLeft = false
     this.module.imgRight = false
+    this.cdRef.detectChanges();
   }
 
   alignRightImage() {
@@ -60,6 +62,7 @@ export class AdminImageModuleComponent extends ModuleComponent<SingleImageModule
     this.module.imgCenter = false
     this.module.imgLeft = false
     this.module.imgRight = true
+    this.cdRef.detectChanges();
   }
 
   alignLeftImage() {
@@ -68,6 +71,14 @@ export class AdminImageModuleComponent extends ModuleComponent<SingleImageModule
     this.module.imgCenter = false
     this.module.imgLeft = true
     this.module.imgRight = false
+    this.cdRef.detectChanges();
+  }
+
+  centerImageSwitchFullWidth() {
+    if (!this.module?.imgCenter) return;
+
+    this.module.imgLarge = !this.module.imgLarge
+    this.cdRef.detectChanges();
   }
 
   /**
@@ -83,11 +94,13 @@ export class AdminImageModuleComponent extends ModuleComponent<SingleImageModule
     img.onload = () => {
       if (!this.module) return
       this.module.imgPortrait = img.naturalHeight > img.naturalWidth;
+      this.cdRef.detectChanges();
     };
 
     img.onerror = () => {
       if (!this.module) return
       this.module.imgPortrait = false;
+      this.cdRef.detectChanges();
       alert("Impossible de charger l'image pour détecter son orientation.");
     };
 
