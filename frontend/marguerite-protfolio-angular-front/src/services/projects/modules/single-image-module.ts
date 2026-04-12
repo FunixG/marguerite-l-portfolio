@@ -33,7 +33,7 @@ export class SingleImageModule extends ProjectModule {
     }
 
     getHtml(): string {
-        const imageHtml = `<img class="${this.imgPortrait ? 'portrait-image' : 'landscape-image'}${this.imgLarge ? ' image-full-with' : ''}" src="${ProjectsMediasService.getMediaUrl(this.imageId)}" alt="${this.altImage}" />`
+        const imageHtml = `<img class="${this.imgPortrait ? 'portrait-image' : 'landscape-image'}" src="${ProjectsMediasService.getMediaUrl(this.imageId)}" alt="${this.altImage}" />`
         const emptySquare = `<div class="empty-square"></div>`
 
         if (this.imgLeft) {
@@ -41,7 +41,11 @@ export class SingleImageModule extends ProjectModule {
         } else if (this.imgRight) {
             return `<div class="${super.getType()}">${emptySquare + imageHtml}</div>`
         } else {
-            return `<div class="${super.getType()}">${emptySquare + imageHtml + emptySquare}</div>`
+            if (this.imgLarge) {
+                return `<div class="${super.getType()}">${imageHtml}</div>`
+            } else {
+                return `<div class="${super.getType()}">${emptySquare + imageHtml + emptySquare}</div>`
+            }
         }
     }
 
