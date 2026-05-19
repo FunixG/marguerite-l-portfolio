@@ -15,6 +15,12 @@
 
 ---
 
+## 👋 Fin du maintien
+
+Le projet a pris fin car le propriétaire du site web a qui est destiné ce projet ne donne plus d'intérêt pour ce dernier. Je pense réutiliser ce projet pour de futurs projets.
+
+---
+
 ## ✨ Présentation
 
 **Marguerite Lanson** est étudiante en école d'art, passionnée par la création visuelle sous toutes ses formes.
